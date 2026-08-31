@@ -1,29 +1,23 @@
-/**
- * script.js - Shukla Bakery Shop (Step 2 Feature Implementation)
- * Handles: 2s Preloader, Dynamic Products Catalog Rendering, Admin Add Item Modal,
- * Custom Inline Delete Confirmation, Category Filter & Cart Drawer Integration.
- */
+/* ==========================================================================
+   SHUKLA BAKERY SHOP - UI CONTROLLER MODULE
+   Main UI event listeners, theme toggler, preloader, product loader, modals.
+   ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', async () => {
+let currentCategory = 'all';
+
+document.addEventListener('DOMContentLoaded', () => {
     initPreloader();
     initThemeToggle();
     initMobileDrawer();
     initFilterTabs();
-    initNavbarScroll();
-    initScrollAnimations();
-    
-    // Load & Render items from localStorage / default catalog
-    await loadAndRenderProducts();
-    
     initAdminModal();
     initCartDrawer();
-    updateCartBadge();
+    initScrollAnimations();
+    loadAndRenderProducts();
 });
 
-let currentCategory = 'all';
-
 /**
- * 2-Second Intro Splash Screen Preloader
+ * 2-Second Intro Splash Preloader
  */
 function initPreloader() {
     const preloader = document.getElementById('preloader');
@@ -35,34 +29,40 @@ function initPreloader() {
 }
 
 /**
- * Theme Toggle Handler
+ * Theme Toggle Handler (Supports Header and Drawer Theme Buttons)
  */
 function initThemeToggle() {
-    const themeBtn = document.getElementById('themeToggleBtn');
     const STORAGE_KEY_THEME = 'shukla_bakery_theme';
-
     const savedTheme = localStorage.getItem(STORAGE_KEY_THEME) || 'light';
     applyTheme(savedTheme);
 
-    if (themeBtn) {
-        themeBtn.addEventListener('click', () => {
+    const themeButtons = document.querySelectorAll('.theme-toggle-btn, #themeToggleBtn, #drawerThemeBtn');
+    themeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             applyTheme(newTheme);
             localStorage.setItem(STORAGE_KEY_THEME, newTheme);
         });
-    }
+    });
 }
 
 function applyTheme(theme) {
-    const themeBtn = document.getElementById('themeToggleBtn');
-    if (theme === 'dark') {
+    const isDark = theme === 'dark';
+    if (isDark) {
         document.documentElement.setAttribute('data-theme', 'dark');
-        if (themeBtn) themeBtn.innerHTML = '☀️ Light';
     } else {
         document.documentElement.setAttribute('data-theme', 'light');
-        if (themeBtn) themeBtn.innerHTML = '🌙 Dark';
     }
+
+    const themeButtons = document.querySelectorAll('.theme-toggle-btn, #themeToggleBtn, #drawerThemeBtn');
+    themeButtons.forEach(btn => {
+        if (btn.id === 'drawerThemeBtn') {
+            btn.innerHTML = isDark ? '☀️ Switch to Light Mode' : '🌙 Switch to Dark Mode';
+        } else {
+            btn.innerHTML = isDark ? '☀️ Light' : '🌙 Dark';
+        }
+    });
 }
 
 /**
@@ -119,7 +119,7 @@ function renderProductsGrid(items) {
                         🗑️
                     </button>
 
-                    <!-- Custom Inline Delete Confirmation Overlay (No Alert) -->
+                    <!-- Custom Inline Delete Confirmation Overlay -->
                     <div class="delete-confirm-overlay" id="deleteConfirm-${item.id}">
                         <p class="delete-confirm-title">Are you sure?</p>
                         <div class="delete-confirm-actions">
@@ -156,7 +156,6 @@ async function handleAddToCart(itemId, btnEl) {
     if (product) {
         window.addToCart(product);
 
-        // Visual feedback on button
         if (btnEl) {
             const origText = btnEl.innerHTML;
             btnEl.innerHTML = 'Added ✓';
@@ -224,8 +223,7 @@ function initFilterTabs() {
  */
 function initAdminModal() {
     const modalOverlay = document.getElementById('adminModal');
-    const openBtn = document.getElementById('openAdminModalBtn');
-    const openDrawerBtn = document.getElementById('drawerAddItemBtn');
+    const openBtns = document.querySelectorAll('.add-item-btn, #openAdminModalBtn, #drawerAddItemBtn');
     const closeBtn = document.getElementById('closeAdminModalBtn');
     const form = document.getElementById('addItemForm');
 
@@ -242,10 +240,11 @@ function initAdminModal() {
         if (form) form.reset();
     };
 
-    if (openBtn) openBtn.addEventListener('click', openModal);
-    if (openDrawerBtn) openDrawerBtn.addEventListener('click', () => {
-        closeMobileDrawer();
-        openModal();
+    openBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            closeMobileDrawer();
+            openModal();
+        });
     });
 
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
@@ -288,7 +287,7 @@ function initAdminModal() {
                 isValid = false;
             }
 
-            // 4. Discount Price Validation (Optional, must be < Price if provided)
+            // 4. Discount Price Validation
             let parsedDiscount = null;
             if (discountInput.value.trim()) {
                 parsedDiscount = parseFloat(discountInput.value);
@@ -303,111 +302,90 @@ function initAdminModal() {
 
             if (!isValid) return;
 
-            const newItemData = {
-                name: nameInput.value.trim(),
-                category: categoryInput.value,
-                price: parsedPrice,
-                discountPrice: parsedDiscount,
-                description: descInput.value.trim(),
-                image: imageInput.value.trim()
-            };
-
+            // Save via localStorage API
             try {
-                const added = await window.BakeryItemsAPI.addItem(newItemData);
-                showToast(`"${added.name}" added to menu catalog!`, 'success');
+                const newItem = await window.BakeryItemsAPI.addItem({
+                    name: nameInput.value.trim(),
+                    category: categoryInput.value,
+                    price: parsedPrice,
+                    discountPrice: parsedDiscount,
+                    description: descInput.value.trim() || 'Handcrafted fresh daily.',
+                    image: imageInput.value.trim() || 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80'
+                });
+
+                showToast(`"${newItem.name}" added to menu successfully!`, 'success');
                 closeModal();
                 await loadAndRenderProducts();
-
-                const menuEl = document.getElementById('menu');
-                if (menuEl) menuEl.scrollIntoView({ behavior: 'smooth' });
             } catch (err) {
-                showToast(err.message || 'Failed to add item.', 'danger');
+                showToast(err.message || 'Failed to save item.', 'danger');
             }
         });
     }
 }
 
-function showFieldError(errorId, text) {
-    const el = document.getElementById(errorId);
-    if (el) {
-        el.textContent = text;
-        el.classList.add('visible');
-    }
+function showFieldError(elementId, message) {
+    const el = document.getElementById(elementId);
+    if (el) el.textContent = message;
 }
 
 function clearFormErrors() {
     const errorEls = document.querySelectorAll('.form-error');
-    errorEls.forEach(el => {
-        el.textContent = '';
-        el.classList.remove('visible');
-    });
+    errorEls.forEach(el => el.textContent = '');
 }
 
 /**
- * Shopping Cart Drawer Controls
- */
-function initCartDrawer() {
-    const drawerOverlay = document.getElementById('cartDrawerOverlay');
-    const drawer = document.getElementById('cartDrawer');
-    const openBtn = document.getElementById('openCartBtn');
-    const closeBtn = document.getElementById('closeCartDrawerBtn');
-
-    if (!drawerOverlay || !drawer) return;
-
-    window.openCartDrawer = () => {
-        drawerOverlay.classList.add('active');
-        drawer.classList.add('open');
-        window.renderCartUI();
-    };
-
-    window.closeCartDrawer = () => {
-        drawerOverlay.classList.remove('active');
-        drawer.classList.remove('open');
-    };
-
-    if (openBtn) openBtn.addEventListener('click', window.openCartDrawer);
-    if (closeBtn) closeBtn.addEventListener('click', window.closeCartDrawer);
-
-    drawerOverlay.addEventListener('click', (e) => {
-        if (e.target === drawerOverlay) window.closeCartDrawer();
-    });
-}
-
-/**
- * Mobile Navigation Drawer
+ * Mobile Drawer Menu Controller
  */
 function initMobileDrawer() {
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const drawerCloseBtn = document.getElementById('drawerCloseBtn');
     const drawerOverlay = document.getElementById('drawerOverlay');
-    const mobileDrawer = document.getElementById('mobileDrawer');
-    const drawerLinks = document.querySelectorAll('.mobile-drawer-links .nav-link');
+    const drawer = document.getElementById('mobileDrawer');
+    const navLinks = document.querySelectorAll('.mobile-drawer-links .nav-link');
 
-    if (!hamburgerBtn || !mobileDrawer || !drawerOverlay) return;
+    if (!hamburgerBtn || !drawer) return;
 
-    const openDrawer = () => {
-        mobileDrawer.classList.add('open');
-        drawerOverlay.classList.add('active');
-    };
+    hamburgerBtn.addEventListener('click', openMobileDrawer);
+    if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeMobileDrawer);
+    if (drawerOverlay) drawerOverlay.addEventListener('click', closeMobileDrawer);
 
-    window.closeMobileDrawer = () => {
-        mobileDrawer.classList.remove('open');
-        drawerOverlay.classList.remove('active');
-    };
-
-    hamburgerBtn.addEventListener('click', openDrawer);
-    if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', window.closeMobileDrawer);
-    drawerOverlay.addEventListener('click', window.closeMobileDrawer);
-
-    drawerLinks.forEach(link => {
-        link.addEventListener('click', window.closeMobileDrawer);
+    navLinks.forEach(link => {
+        link.addEventListener('click', closeMobileDrawer);
     });
 }
 
-function initNavbarScroll() {
-    const navbar = document.querySelector('.navbar');
-    if (!navbar) return;
+function openMobileDrawer() {
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const drawer = document.getElementById('mobileDrawer');
+    if (drawerOverlay) drawerOverlay.classList.add('active');
+    if (drawer) drawer.classList.add('open');
+}
 
+function closeMobileDrawer() {
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const drawer = document.getElementById('mobileDrawer');
+    if (drawerOverlay) drawerOverlay.classList.remove('active');
+    if (drawer) drawer.classList.remove('open');
+}
+
+/**
+ * Scroll Animations Controller
+ */
+function initScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.animate-fade');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    animatedElements.forEach(el => observer.observe(el));
+
+    // Navbar Scroll shadow behavior
+    const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 40) {
             navbar.classList.add('scrolled');
@@ -417,51 +395,27 @@ function initNavbarScroll() {
     });
 }
 
-function initScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -40px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animated');
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.animate-fade').forEach(el => observer.observe(el));
-}
-
 /**
- * Lightweight Toast Notification System
+ * Toast Notification Utility
  */
 function showToast(message, type = 'info') {
-    let container = document.getElementById('toastContainer');
+    let container = document.querySelector('.toast-container');
     if (!container) {
         container = document.createElement('div');
-        container.id = 'toastContainer';
         container.className = 'toast-container';
         document.body.appendChild(container);
     }
 
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
-    toast.innerHTML = `<span>${message}</span>`;
+    toast.textContent = message;
 
     container.appendChild(toast);
 
-    setTimeout(() => toast.classList.add('show'), 10);
+    setTimeout(() => toast.classList.add('show'), 50);
 
     setTimeout(() => {
         toast.classList.remove('show');
         setTimeout(() => toast.remove(), 300);
-    }, 3500);
+    }, 3000);
 }
-
-window.handleAddToCart = handleAddToCart;
-window.toggleDeleteConfirm = toggleDeleteConfirm;
-window.confirmDeleteItem = confirmDeleteItem;
-window.resetItemsCatalog = resetItemsCatalog;
-window.showToast = showToast;

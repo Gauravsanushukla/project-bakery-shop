@@ -1,12 +1,12 @@
 /* ==========================================================================
-   SHUKLA BAKERY SHOP - PERFECT STYLESHEET (COMPACT MOBILE GALLERY FIX)
-   Clean, Elegant, Responsive Bakery UI (Tested for 375px, 390px, 768px, 1440px)
+   SHUKLA BAKERY SHOP - LUXURY BAKERY WEBSITE STYLESHEET
+   Clean, Warm, Premium Bakingo-Level Design (Fully Responsive: 375px, 390px, 768px, 1440px)
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-    /* Rich Bakery Palette */
+    /* Rich Warm Bakery Palette */
     --bg-cream: #FAF5EF;
     --bg-surface: #FFFFFF;
     --secondary-blush: #FFEAE4;
@@ -185,7 +185,7 @@ button, input, select, textarea {
 
 .section-title {
     font-family: var(--font-heading);
-    font-size: 2.6rem;
+    font-size: 2.5rem;
     color: var(--primary-brown-dark);
     margin-bottom: 12px;
     line-height: 1.2;
@@ -258,7 +258,7 @@ button, input, select, textarea {
     left: 0;
     width: 100%;
     height: var(--header-height);
-    background-color: rgba(250, 245, 239, 0.94);
+    background-color: rgba(250, 245, 239, 0.96);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     z-index: 1000;
@@ -267,7 +267,7 @@ button, input, select, textarea {
 }
 
 [data-theme="dark"] .navbar {
-    background-color: rgba(20, 10, 7, 0.94);
+    background-color: rgba(20, 10, 7, 0.96);
 }
 
 .navbar.scrolled {
@@ -281,7 +281,7 @@ button, input, select, textarea {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 16px;
 }
 
 .logo {
@@ -297,25 +297,44 @@ button, input, select, textarea {
 }
 
 .brand-logo-img {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid var(--accent-gold-glow);
     flex-shrink: 0;
 }
 
+/* NAVIGATION LINKS BAR (ALWAYS VISIBLE & CLEAR) */
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 24px;
 }
 
 .nav-link {
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.925rem;
     color: var(--text-dark);
     position: relative;
+    padding: 4px 0;
+    transition: var(--transition-fast);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--crazy-gradient);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
 }
 
 .nav-link:hover, .nav-link.active {
@@ -333,32 +352,45 @@ button, input, select, textarea {
     background: var(--crazy-gradient);
     color: #FFFFFF;
     border: none;
-    padding: 7px 16px;
+    padding: 8px 18px;
     border-radius: var(--radius-full);
-    font-size: 0.8rem;
+    font-size: 0.825rem;
     font-weight: 700;
     cursor: pointer;
     white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(255, 59, 126, 0.25);
+    transition: var(--transition-fast);
+}
+
+.add-item-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255, 59, 126, 0.4);
 }
 
 .theme-toggle-btn {
     background: var(--secondary-blush);
     border: 1px solid var(--border-color);
     color: var(--text-dark);
-    padding: 6px 12px;
+    padding: 7px 14px;
     border-radius: var(--radius-full);
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     font-weight: 700;
     cursor: pointer;
     white-space: nowrap;
+    transition: var(--transition-fast);
+}
+
+.theme-toggle-btn:hover {
+    background: var(--bg-surface);
+    border-color: var(--accent-gold);
 }
 
 .icon-btn {
     position: relative;
     background: var(--secondary-blush);
     border: 1px solid var(--border-color);
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -366,6 +398,11 @@ button, input, select, textarea {
     cursor: pointer;
     color: var(--primary-brown);
     flex-shrink: 0;
+    transition: var(--transition-fast);
+}
+
+.icon-btn:hover {
+    transform: scale(1.05);
 }
 
 .cart-badge {
@@ -376,8 +413,8 @@ button, input, select, textarea {
     color: #FFFFFF;
     font-size: 0.7rem;
     font-weight: 800;
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -389,18 +426,18 @@ button, input, select, textarea {
     display: none;
     background: var(--secondary-blush);
     border: 1px solid var(--border-color);
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     color: var(--primary-brown);
     cursor: pointer;
     flex-shrink: 0;
 }
 
-/* MOBILE SLIDE DRAWER */
+/* MOBILE SLIDE-IN DRAWER MENU */
 .mobile-drawer-overlay {
     position: fixed;
     top: 0;
@@ -423,16 +460,16 @@ button, input, select, textarea {
 .mobile-drawer {
     position: fixed;
     top: 0;
-    right: -300px;
-    width: 280px;
+    right: -320px;
+    width: 290px;
     max-width: 85%;
     height: 100%;
-    background-color: var(--bg-cream);
+    background-color: var(--bg-surface);
     z-index: 1600;
     box-shadow: var(--shadow-hover);
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 24px 20px;
     transition: right 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
@@ -452,7 +489,7 @@ button, input, select, textarea {
 .drawer-close-btn {
     background: none;
     border: none;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     color: var(--primary-brown);
     cursor: pointer;
 }
@@ -468,10 +505,19 @@ button, input, select, textarea {
     font-weight: 600;
 }
 
+.drawer-action-box {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
 /* HERO SECTION */
 .hero {
     position: relative;
-    padding: 60px 0 80px 0;
+    padding: 70px 0 90px 0;
     background: linear-gradient(rgba(20, 10, 7, 0.65), rgba(20, 10, 7, 0.65)),
                 url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
     display: flex;
@@ -862,9 +908,7 @@ button, input, select, textarea {
     text-transform: uppercase;
 }
 
-/* ==========================================================================
-   GALLERY SECTION (COMPACT & MOBILE RESPONSIVE 2-COLUMN ON PHONE)
-   ========================================================================== */
+/* GALLERY SECTION */
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1294,18 +1338,16 @@ textarea.form-control {
 .toast-success { background: var(--success-green); }
 .toast-danger { background: var(--danger-red); }
 
+/* ALL SECTIONS 100% VISIBLE BY DEFAULT (NO BLANK OPACITY ZERO BUG) */
 .animate-fade {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
 }
 
-.animate-fade.animated {
-    opacity: 1;
-    transform: translateY(0);
-}
+/* ==========================================================================
+   STRICT LUXURY RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
 
-/* RESPONSIVE MEDIA QUERIES FOR COMPACT GALLERY & ZERO OVERFLOW */
 @media (max-width: 1024px) {
     .products-grid, .gallery-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -1321,9 +1363,23 @@ textarea.form-control {
     }
 }
 
+/* COLLAPSE NAV LINKS ONLY ON MOBILE SCREENS (< 768px) */
 @media (max-width: 768px) {
     :root {
         --header-height: 66px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger-btn {
+        display: flex;
+    }
+
+    .nav-actions .add-item-btn,
+    .nav-actions .theme-toggle-btn {
+        display: none;
     }
 
     .section {
@@ -1332,14 +1388,6 @@ textarea.form-control {
 
     .container {
         padding: 0 16px;
-    }
-
-    .nav-links, .add-item-btn, .theme-toggle-btn {
-        display: none;
-    }
-
-    .hamburger-btn {
-        display: flex;
     }
 
     .logo {
@@ -1360,7 +1408,6 @@ textarea.form-control {
         gap: 12px;
     }
 
-    /* Mobile Responsive Gallery: Compact 3 or 2 columns with reduced height */
     .gallery-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;
@@ -1381,7 +1428,7 @@ textarea.form-control {
     }
 
     .gallery-caption p {
-        display: none; /* Hide subtitle text on mobile image overlays to keep it compact */
+        display: none;
     }
 
     .about-grid, .map-grid, .contact-grid {
@@ -1425,8 +1472,8 @@ textarea.form-control {
     }
 
     .icon-btn, .hamburger-btn {
-        width: 36px;
-        height: 36px;
+        width: 38px;
+        height: 38px;
         font-size: 1.05rem;
     }
 
@@ -1448,7 +1495,6 @@ textarea.form-control {
         gap: 10px;
     }
 
-    /* Phone Screen Gallery: 2 Compact Columns with 130px height */
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
