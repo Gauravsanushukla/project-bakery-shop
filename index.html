@@ -2,145 +2,175 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shukla Bakery | Artisanal Bakes & Fresh Pastries</title>
-    <meta name="description" content="Welcome to Shukla Bakery - Handcrafted sourdough, artisanal cakes, fresh butter croissants, and gourmet pastries baked fresh daily with love.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Shukla Bakery Shop 🥐 | Fresh Baked, Pure Happiness</title>
+    <meta name="description" content="Welcome to Shukla Bakery Shop - Handcrafted artisanal cakes, fresh butter croissants, sourdough breads, and delicious cupcakes baked daily with love.">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- 0. 2-SECOND ANIMATED INTRO PRELOADER -->
+    <!-- 0. 2-SECOND ANIMATED INTRO PRELOADER SPLASH -->
     <div id="preloader" class="preloader">
         <div class="preloader-logo-wrapper">
-            <img src="logo.jpg" alt="Shukla Bakery Logo" class="preloader-logo">
-            <div class="preloader-title">Shukla Bakery</div>
+            <img src="logo.jpg" alt="Shukla Bakery Shop Emblem" class="preloader-logo">
+            <div class="preloader-title">Shukla Bakery Shop</div>
         </div>
     </div>
 
-    <!-- 1. NAVIGATION BAR -->
+    <!-- 1. STICKY NAVBAR -->
     <nav class="navbar">
         <div class="container">
+            <!-- Logo Left with Official Emblem -->
             <a href="#hero" class="logo">
-                <img src="logo.jpg" alt="Shukla Bakery Logo" class="brand-logo-img">
-                <span>Shukla Bakery</span>
+                <img src="logo.jpg" alt="Shukla Bakery Shop Emblem" class="brand-logo-img">
+                <span>Shukla Bakery Shop</span>
             </a>
 
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#hero" class="nav-link active" data-i18n="nav_home">Home</a></li>
-                <li><a href="#about" class="nav-link" data-i18n="nav_about">About Us</a></li>
-                <li><a href="#menu" class="nav-link" data-i18n="nav_menu">Menu</a></li>
-                <li><a href="#gallery" class="nav-link" data-i18n="nav_gallery">Gallery</a></li>
-                <li><a href="#testimonials" class="nav-link" data-i18n="nav_reviews">Reviews</a></li>
-                <li><a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a></li>
+            <!-- Nav Links Center (Desktop) -->
+            <ul class="nav-links">
+                <li><a href="#hero" class="nav-link active">Home</a></li>
+                <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#about" class="nav-link">Our Craft</a></li>
+                <li><a href="#location" class="nav-link">Location</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
 
+            <!-- Right Actions -->
             <div class="nav-actions">
-                <!-- Hindi / English Language Toggle -->
-                <button class="lang-toggle-btn" id="langToggleBtn">🌐 English</button>
-
-                <!-- Light / Dark Theme Toggle -->
+                <!-- Theme Toggle Button (Desktop) -->
                 <button class="theme-toggle-btn" id="themeToggleBtn">🌙 Dark</button>
 
-                <!-- Cart Button -->
-                <button class="cart-icon-btn" id="openCartBtn" aria-label="Open Shopping Cart">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Admin "+ Add Item" Button (Desktop) -->
+                <button class="add-item-btn" id="openAdminModalBtn">
+                    <span>+ Add Item</span>
+                </button>
+
+                <!-- Cart Icon with Dynamic Badge Counter -->
+                <button class="icon-btn cart-btn" id="openCartBtn" aria-label="Shopping Cart" title="View Cart">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
                         <line x1="3" y1="6" x2="21" y2="6"></line>
                         <path d="M16 10a4 4 0 01-8 0"></path>
                     </svg>
-                    <span class="cart-badge" style="display: none;">0</span>
+                    <span class="cart-badge">0</span>
                 </button>
 
-                <!-- Admin Action Button -->
-                <button class="admin-btn" id="openAdminModalBtn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"></path></svg>
-                    <span data-i18n="nav_add_item">Add New Item</span>
-                </button>
-
-                <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation Menu">
+                <!-- Hamburger Icon (Mobile Drawer Trigger) -->
+                <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Menu">
                     ☰
                 </button>
             </div>
         </div>
     </nav>
 
+    <!-- MOBILE SLIDE-IN DRAWER -->
+    <div class="mobile-drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="mobile-drawer-header">
+            <div class="logo">
+                <img src="logo.jpg" alt="Shukla Bakery Shop Emblem" class="brand-logo-img">
+                <span>Shukla Bakery</span>
+            </div>
+            <button class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close menu">&times;</button>
+        </div>
+        <ul class="mobile-drawer-links">
+            <li><a href="#hero" class="nav-link">Home</a></li>
+            <li><a href="#menu" class="nav-link">Menu</a></li>
+            <li><a href="#about" class="nav-link">Our Craft</a></li>
+            <li><a href="#location" class="nav-link">Location</a></li>
+            <li><a href="#gallery" class="nav-link">Gallery</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+            <li style="margin-top: 14px; display: flex; flex-direction: column; gap: 10px;">
+                <button class="add-item-btn" id="drawerAddItemBtn" style="width: 100%; justify-content: center;">
+                    <span>+ Add New Item</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+
     <!-- 2. HERO SECTION -->
     <section id="hero" class="hero">
         <div class="container">
-            <div class="hero-wrapper">
-                <div class="hero-content animate-on-scroll">
-                    <div class="hero-badge">
-                        <span data-i18n="hero_badge">✨ Handcrafted with Organic Ingredients</span>
-                    </div>
-                    <h1 class="hero-title">
-                        <span data-i18n="hero_title_1">Crafted with Love, </span>
-                        <span data-i18n="hero_title_2" style="color: var(--accent-mustard); font-style: italic;">Baked Fresh</span>
-                        <span data-i18n="hero_title_3"> Daily</span>
-                    </h1>
-                    <p class="hero-description" data-i18n="hero_desc">
-                        Indulge in artisanal sourdough breads, buttery melt-in-your-mouth pastries, and decadent bespoke cakes crafted by master bakers every morning.
-                    </p>
-                    <div class="hero-cta">
-                        <a href="#menu" class="btn btn-primary">
-                            <span data-i18n="btn_explore_menu">Explore Menu</span>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
-                        </a>
-                        <a href="#about" class="btn btn-secondary" data-i18n="btn_our_story">Our Story</a>
-                    </div>
-                </div>
-
-                <div class="hero-image-container animate-on-scroll">
-                    <div class="hero-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80" alt="Fresh Bakery Spread">
-                    </div>
-                    <div class="hero-floating-card">
-                        <div class="floating-icon">🥖</div>
-                        <div class="floating-text">
-                            <h4 data-i18n="hero_floating_title">100% Oven Fresh</h4>
-                            <p data-i18n="hero_floating_sub">Baked daily at 6:00 AM</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="hero-card animate-fade">
+                <span class="section-tag">Handcrafted Daily</span>
+                <h1 class="hero-brand">Shukla Bakery Shop</h1>
+                <p class="hero-tagline">"Fresh Baked, Pure Happiness"</p>
+                <p class="hero-description">
+                    Step into a world of warm aromas, slow-fermented sourdoughs, and delicate butter pastries prepared from scratch every morning.
+                </p>
+                <a href="#menu" class="btn btn-primary">View Menu 🥐</a>
             </div>
         </div>
     </section>
 
-    <!-- 3. ABOUT US SECTION -->
+    <!-- 3. MENU SECTION & CATEGORY FILTER PILLS -->
+    <section id="menu" class="section menu">
+        <div class="container">
+            <div class="text-center animate-fade">
+                <span class="section-tag">Oven Fresh Selection</span>
+                <h2 class="section-title">Our Bakery Menu</h2>
+                <p class="section-subtitle">Explore our daily range of handcrafted treats, baked with pure organic ingredients.</p>
+            </div>
+
+            <!-- Category Filter Pills (Scrollable Row) -->
+            <div class="category-pills-container animate-fade">
+                <div class="pills-wrapper">
+                    <button class="filter-pill active" data-category="all">All Bakes</button>
+                    <button class="filter-pill" data-category="Cakes">Cakes</button>
+                    <button class="filter-pill" data-category="Pastries">Pastries</button>
+                    <button class="filter-pill" data-category="Breads">Breads</button>
+                    <button class="filter-pill" data-category="Cookies">Cookies</button>
+                    <button class="filter-pill" data-category="Cupcakes">Cupcakes</button>
+                </div>
+            </div>
+
+            <!-- 4. PRODUCT GRID (Populated Dynamically via items.js & script.js) -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Product cards render here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. OUR CRAFT (ABOUT SECTION - REDESIGNED) -->
     <section id="about" class="section about">
         <div class="container">
             <div class="about-grid">
-                <div class="about-images animate-on-scroll">
-                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" alt="Croissant prep" class="about-img-main">
-                    <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=500&q=80" alt="Baker kneading dough" class="about-img-secondary">
+                <!-- Dual Layered Image Collage -->
+                <div class="about-images-wrapper animate-fade">
+                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80" alt="Croissant Lamination Prep" class="about-img-main">
+                    <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=600&q=80" alt="Master Baker Kneading Sourdough" class="about-img-floating">
                 </div>
 
-                <div class="about-content animate-on-scroll">
-                    <span class="section-tag" data-i18n="about_tag">Since 2011</span>
-                    <h2 data-i18n="about_title">A Tradition of Flavor, Passion & Artistry</h2>
-                    <p class="about-text" data-i18n="about_text_1">
-                        Founded by the Shukla family, our bakery began with a simple wooden oven and a passion for slow-fermented, stone-ground breads. Today, we continue to honor traditional European baking methods combined with modern culinary finesse.
+                <!-- Rich Craft Content & Stats Grid -->
+                <div class="about-content animate-fade">
+                    <span class="section-tag">15+ Years of Artisan Mastery</span>
+                    <h2>A Tradition of Slow Fermentation & Pure Passion</h2>
+                    <p class="about-text">
+                        Founded by the Shukla family, our boutique bakery began with a simple stone oven and a commitment to European baking artistry. Every morning before 5:00 AM, our master bakers fold 27 layers of Normandy butter into laminated pastries and nurture 36-hour wild sourdough starters.
                     </p>
-                    <p class="about-text" data-i18n="about_text_2">
-                        We source only unbleached stone-ground flours, pure French butter, and locally sourced organic fruits to ensure every bite delivers an unforgettable experience.
+                    <p class="about-text">
+                        We strictly source unbleached organic flours, pure vanilla beans, and farm-fresh fruits. Zero artificial preservatives, zero shortcuts — only pure baked happiness.
                     </p>
 
+                    <!-- Key Stats Counter Grid -->
                     <div class="stats-grid">
-                        <div class="stat-card">
+                        <div class="stat-box">
                             <div class="stat-number">15+</div>
-                            <div class="stat-label" data-i18n="stat_years">Years Experience</div>
+                            <div class="stat-label">Years Craft</div>
                         </div>
-                        <div class="stat-card">
+                        <div class="stat-box">
                             <div class="stat-number">50k+</div>
-                            <div class="stat-label" data-i18n="stat_customers">Happy Foodies</div>
+                            <div class="stat-label">Happy Foodies</div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-number">120+</div>
-                            <div class="stat-label" data-i18n="stat_bakes">Daily Fresh Bakes</div>
+                        <div class="stat-box">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Organic & Pure</div>
                         </div>
                     </div>
                 </div>
@@ -148,140 +178,117 @@
         </div>
     </section>
 
-    <!-- 4. MENU / PRODUCTS SECTION -->
-    <section id="menu" class="section menu">
+    <!-- 6. MAP & LOCATION SECTION -->
+    <section id="location" class="map-section">
         <div class="container">
-            <div class="text-center animate-on-scroll">
-                <span class="section-tag" data-i18n="menu_tag">Oven Fresh Treats</span>
-                <h2 class="section-title" data-i18n="menu_title">Explore Our Bakery Menu</h2>
-                <p class="section-subtitle" data-i18n="menu_sub">From crispy sourdough loaves to delicate macarons, discover our daily selection of handcrafted delights.</p>
+            <div class="text-center animate-fade">
+                <span class="section-tag">Visit Our Shop</span>
+                <h2 class="section-title">Store Location & Hours</h2>
+                <p class="section-subtitle">Drop by our cozy boutique bakery for hot morning bakes and artisan coffees.</p>
             </div>
 
-            <!-- Category Filter Pills -->
-            <div class="filter-controls animate-on-scroll">
-                <button class="filter-btn active" data-filter="all" data-i18n="cat_all">All Items</button>
-                <button class="filter-btn" data-filter="Cakes" data-i18n="cat_cakes">Cakes</button>
-                <button class="filter-btn" data-filter="Pastries" data-i18n="cat_pastries">Pastries</button>
-                <button class="filter-btn" data-filter="Breads" data-i18n="cat_breads">Breads</button>
-                <button class="filter-btn" data-filter="Cookies" data-i18n="cat_cookies">Cookies</button>
-            </div>
+            <div class="map-grid">
+                <div class="map-info-box animate-fade">
+                    <div class="info-card">
+                        <div class="info-icon">📍</div>
+                        <div class="info-details">
+                            <h4>Our Address</h4>
+                            <p>42 Bakery Lane, Connaught Place<br>New Delhi - 110001, India</p>
+                        </div>
+                    </div>
 
-            <!-- Product Grid Container (Populated via items.js & script.js) -->
-            <div class="products-grid" id="productsGrid">
-                <!-- Dynamically generated product cards will appear here -->
+                    <div class="info-card">
+                        <div class="info-icon">⏰</div>
+                        <div class="info-details">
+                            <h4>Bake Hours</h4>
+                            <p>Mon - Sat: 7:00 AM - 9:00 PM<br>Sunday: 8:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">📞</div>
+                        <div class="info-details">
+                            <h4>Contact & Hotline</h4>
+                            <p>+91 98765 43210<br>hello@shuklabakery.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Google Map Frame -->
+                <div class="map-frame-wrapper animate-fade">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.9877478635817!2d77.21672131508248!3d28.630138982417706!2m3!1f0!1f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd37b8a07779%3A0x6796245f7823f66e!2sConnaught%20Place%2C%20New%20Delhi!5e0!3m2!1sen!2sin!4v1629888888888!5m2!1sen!2sin" title="Shukla Bakery Shop Google Map" allowfullscreen="" loading="lazy"></iframe>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 5. GALLERY SECTION -->
+    <!-- 7. BAKERY GALLERY SECTION -->
     <section id="gallery" class="section gallery">
         <div class="container">
-            <div class="text-center animate-on-scroll">
-                <span class="section-tag" data-i18n="gallery_tag">Visual Feast</span>
-                <h2 class="section-title" data-i18n="gallery_title">Bakery Moments & Creations</h2>
-                <p class="section-subtitle" data-i18n="gallery_sub">Take a glimpse inside our bakery kitchen and our finest artisanal creations.</p>
+            <div class="text-center animate-fade">
+                <span class="section-tag">Culinary Artistry</span>
+                <h2 class="section-title">Bakery Moments & Masterpieces</h2>
+                <p class="section-subtitle">A glimpse inside our oven fresh kitchen and bespoke artisan creations.</p>
             </div>
 
-            <div class="gallery-grid animate-on-scroll">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Fresh Bread" class="gallery-img">
+            <!-- 6-Item Boutique Gallery Grid with Hover Overlays -->
+            <div class="gallery-grid animate-fade">
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" alt="French Butter Croissant" class="gallery-img">
                     <div class="gallery-overlay">
                         <div class="gallery-caption">
-                            <h4>Fresh Golden Pastries</h4>
+                            <h4>French Butter Croissant</h4>
+                            <p>27-Layer Flaky Golden Perfection</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" alt="Chocolate Truffle Cake" class="gallery-img">
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" alt="Belgian Truffle Cake" class="gallery-img">
                     <div class="gallery-overlay">
                         <div class="gallery-caption">
-                            <h4>Gourmet Truffle Cake</h4>
+                            <h4>70% Valrhona Truffle Gateau</h4>
+                            <p>Bespoke Celebration Chocolate Cake</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&w=600&q=80" alt="Macarons" class="gallery-img">
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&w=600&q=80" alt="Sicilian Macarons" class="gallery-img">
                     <div class="gallery-overlay">
                         <div class="gallery-caption">
-                            <h4>Handmade Macarons</h4>
+                            <h4>Handcrafted Macarons</h4>
+                            <p>French Almond Meringue Shells</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?auto=format&fit=crop&w=600&q=80" alt="Artisan Bread" class="gallery-img">
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?auto=format&fit=crop&w=600&q=80" alt="Artisan Sourdough" class="gallery-img">
                     <div class="gallery-overlay">
                         <div class="gallery-caption">
-                            <h4>Rustic Sourdough</h4>
+                            <h4>Country Sourdough Loaf</h4>
+                            <p>36-Hour Fermented Wild Yeast</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=600&q=80" alt="Strawberry Cake" class="gallery-img">
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=600&q=80" alt="Strawberry Shortcake" class="gallery-img">
                     <div class="gallery-overlay">
                         <div class="gallery-caption">
-                            <h4>Layered Berry Sponge</h4>
+                            <h4>Strawberry Cream Chiffon</h4>
+                            <p>Organic Field Berry Layer Cake</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80" alt="Choco Cookies" class="gallery-img">
+                <div class="gallery-card">
+                    <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80" alt="Soft Baked Cookies" class="gallery-img">
                     <div class="gallery-overlay">
                         <div class="gallery-caption">
-                            <h4>Soft Baked Cookies</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. TESTIMONIALS SECTION -->
-    <section id="testimonials" class="section testimonials">
-        <div class="container">
-            <div class="text-center animate-on-scroll">
-                <span class="section-tag" data-i18n="testimonials_tag">Loved By Community</span>
-                <h2 class="section-title" data-i18n="testimonials_title">What Our Customers Say</h2>
-                <p class="section-subtitle" data-i18n="testimonials_sub">Hear from our loyal patrons who start their morning with Shukla Bakery.</p>
-            </div>
-
-            <div class="testimonials-grid animate-on-scroll">
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="quote">"The sourdough bread here is unmatched! Perfect golden crust with just the right amount of tang. Their butter croissants take me right back to Paris."</p>
-                    <div class="author">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Sophia M." class="author-avatar">
-                        <div class="author-info">
-                            <h4>Sophia Martinez</h4>
-                            <p>Food Blogger</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="quote">"We ordered our wedding cake from Shukla Bakery. Not only was it breathtakingly beautiful, but the Belgian truffle chocolate flavor was divine!"</p>
-                    <div class="author">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="David K." class="author-avatar">
-                        <div class="author-info">
-                            <h4>David Kapoor</h4>
-                            <p>Local Regular</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="quote">"The team's attention to detail and warm hospitality makes visiting Shukla Bakery the highlight of my weekend mornings. Absolutely recommended!"</p>
-                    <div class="author">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Emily R." class="author-avatar">
-                        <div class="author-info">
-                            <h4>Emily Roberts</h4>
-                            <p>Coffee & Bake Lover</p>
+                            <h4>Choco Chunk Pecan Cookie</h4>
+                            <p>Soft-Baked Brown Butter Delights</p>
                         </div>
                     </div>
                 </div>
@@ -289,210 +296,199 @@
         </div>
     </section>
 
-    <!-- 7. CONTACT & LOCATION SECTION -->
+    <!-- 8. CONTACT SECTION (FIXED HIGH-CONTRAST FORM & CARD) -->
     <section id="contact" class="section contact">
         <div class="container">
             <div class="contact-grid">
-                <!-- Info Card -->
-                <div class="contact-info-card animate-on-scroll">
-                    <div>
-                        <h3 data-i18n="contact_info_title">Visit Our Bakery</h3>
-                        <div class="info-list">
-                            <div class="info-item">
-                                <div class="info-icon">📍</div>
-                                <div class="info-text">
-                                    <h4 data-i18n="contact_address_label">Our Address</h4>
-                                    <p>In Front Of Kukku Market<br>Maharjpur, Kanpur Nagar 209402</p>
-                                </div>
-                            </div>
-
-                            <div class="info-item">
-                                <div class="info-icon">⏰</div>
-                                <div class="info-text">
-                                    <h4 data-i18n="contact_hours_label">Opening Hours</h4>
-                                    <p>Mon - Sat: 7:00 AM - 9:00 PM<br>Sunday: 8:00 AM - 6:00 PM</p>
-                                </div>
-                            </div>
-
-                            <div class="info-item">
-                                <div class="info-icon">📞</div>
-                                <div class="info-text">
-                                    <h4 data-i18n="contact_phone_label">Contact Us</h4>
-                                    <p>+91 9026455089<br>hello@shuklabakery.com</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="social-links">
-                        <a href="#" class="social-icon" aria-label="Instagram">📷</a>
-                        <a href="#" class="social-icon" aria-label="Facebook">📘</a>
-                        <a href="#" class="social-icon" aria-label="Twitter">🐤</a>
-                    </div>
+                <div class="contact-card animate-fade">
+                    <h3>Visit Shukla Bakery Shop</h3>
+                    <p>We’d love to welcome you to our cozy bakery shop for hot coffee and fresh bakes.</p>
+                    <p><strong>📍 Address:</strong> 42 Bakery Lane, Connaught Place, New Delhi</p>
+                    <p><strong>⏰ Hours:</strong> Mon - Sun: 7:00 AM - 9:00 PM</p>
+                    <p><strong>📞 Phone:</strong> +91 98765 43210</p>
                 </div>
 
-                <!-- Contact Form -->
-                <div class="contact-form-container animate-on-scroll">
-                    <h3 data-i18n="contact_form_title">Send Us a Message</h3>
-                    <form id="contactForm">
+                <div class="contact-form animate-fade">
+                    <h3>Send Us a Note</h3>
+                    <form onsubmit="event.preventDefault(); showToast('Thank you for reaching out to Shukla Bakery Shop!', 'success');">
                         <div class="form-group">
-                            <label for="contactName" class="form-label" data-i18n="label_your_name">Your Name</label>
-                            <input type="text" id="contactName" class="form-control" placeholder="e.g. Rahul Sharma" required>
+                            <label class="form-label">Your Name</label>
+                            <input type="text" class="form-control" placeholder="e.g. Rahul Sharma" required>
                         </div>
                         <div class="form-group">
-                            <label for="contactEmail" class="form-label" data-i18n="label_email">Email Address</label>
-                            <input type="email" id="contactEmail" class="form-control" placeholder="e.g. rahul@example.com" required>
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" placeholder="e.g. rahul@example.com" required>
                         </div>
                         <div class="form-group">
-                            <label for="contactSubject" class="form-label" data-i18n="label_subject">Subject</label>
-                            <input type="text" id="contactSubject" class="form-control" placeholder="e.g. Custom Cake Order Inquiry" required>
+                            <label class="form-label">Message</label>
+                            <textarea class="form-control" rows="3" placeholder="How can we sweeten your day?" required></textarea>
                         </div>
-                        <div class="form-group">
-                            <label for="contactMessage" class="form-label" data-i18n="label_message">Message</label>
-                            <textarea id="contactMessage" class="form-control" placeholder="Tell us how we can sweeten your day..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;" data-i18n="btn_send_message">Send Message</button>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
                     </form>
                 </div>
-            </div>
-
-            <!-- Map Embed Placeholder -->
-            <div class="map-placeholder animate-on-scroll">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.9877478635817!2d77.21672131508248!3d28.630138982417706!2m3!1f0!1f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd37b8a07779%3A0x6796245f7823f66e!2sConnaught%20Place%2C%20New%20Delhi!5e0!3m2!1sen!2sin!4v1629888888888!5m2!1sen!2sin" allowfullscreen="" loading="lazy" title="Shukla Bakery Map Location"></iframe>
             </div>
         </div>
     </section>
 
-    <!-- 8. FOOTER -->
+    <!-- 9. RICH FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
+                <!-- Brand Column -->
                 <div class="footer-brand">
-                    <a href="#hero" class="logo">
-                        <img src="logo.jpg" alt="Shukla Bakery Logo" class="brand-logo-img">
-                        <span>Shukla Bakery</span>
-                    </a>
-                    <p data-i18n="footer_brand_text">Handcrafting memories, traditional sourdoughs, and decadent treats daily since 2011.</p>
-                </div>
-
-                <div>
-                    <h4 class="footer-title" data-i18n="footer_links_title">Quick Links</h4>
-                    <div class="footer-links">
-                        <a href="#hero" data-i18n="nav_home">Home</a>
-                        <a href="#about" data-i18n="nav_about">About Us</a>
-                        <a href="#menu" data-i18n="nav_menu">Our Menu</a>
-                        <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
-                        <a href="#contact" data-i18n="nav_contact">Contact</a>
+                    <div class="footer-logo-row">
+                        <img src="logo.jpg" alt="Shukla Bakery Emblem" class="brand-logo-img">
+                        <div class="footer-logo-title">Shukla Bakery Shop</div>
+                    </div>
+                    <p class="footer-desc">
+                        Handcrafting memories, traditional slow-fermented sourdoughs, French butter pastries, and decadent treats daily since 2011.
+                    </p>
+                    <div class="social-links-row">
+                        <a href="#" class="social-icon-btn" aria-label="Instagram">📷</a>
+                        <a href="#" class="social-icon-btn" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-icon-btn" aria-label="WhatsApp">💬</a>
+                        <a href="#" class="social-icon-btn" aria-label="Twitter">🐤</a>
                     </div>
                 </div>
 
+                <!-- Navigation Links -->
                 <div>
-                    <h4 class="footer-title" data-i18n="footer_categories_title">Categories</h4>
-                    <div class="footer-links">
-                        <a href="#menu" onclick="currentCategory='Cakes'; loadAndRenderProducts();" data-i18n="cat_cakes">Cakes</a>
-                        <a href="#menu" onclick="currentCategory='Pastries'; loadAndRenderProducts();" data-i18n="cat_pastries">Pastries</a>
-                        <a href="#menu" onclick="currentCategory='Breads'; loadAndRenderProducts();" data-i18n="cat_breads">Artisan Breads</a>
-                        <a href="#menu" onclick="currentCategory='Cookies'; loadAndRenderProducts();" data-i18n="cat_cookies">Cookies</a>
-                    </div>
+                    <h4 class="footer-col-title">Quick Links</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#menu">Our Menu</a></li>
+                        <li><a href="#about">Our Craft</a></li>
+                        <li><a href="#location">Store Location</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
                 </div>
 
+                <!-- Bake Categories -->
                 <div>
-                    <h4 class="footer-title" data-i18n="footer_newsletter_title">Stay Fresh</h4>
-                    <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 12px;" data-i18n="footer_newsletter_desc">Subscribe for weekend bake updates & special discounts.</p>
-                    <form id="newsletterForm" class="newsletter-form">
-                        <input type="email" class="newsletter-input" placeholder="Your email address" required>
-                        <button type="submit" class="btn btn-primary btn-sm" data-i18n="btn_join">Join</button>
-                    </form>
+                    <h4 class="footer-col-title">Categories</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="#menu" onclick="currentCategory='Cakes'; loadAndRenderProducts();">Gourmet Cakes</a></li>
+                        <li><a href="#menu" onclick="currentCategory='Pastries'; loadAndRenderProducts();">Butter Pastries</a></li>
+                        <li><a href="#menu" onclick="currentCategory='Breads'; loadAndRenderProducts();">Artisan Breads</a></li>
+                        <li><a href="#menu" onclick="currentCategory='Cookies'; loadAndRenderProducts();">Macarons & Cookies</a></li>
+                        <li><a href="#menu" onclick="currentCategory='Cupcakes'; loadAndRenderProducts();">Velvet Cupcakes</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter Column -->
+                <div>
+                    <h4 class="footer-col-title">Join VIP Bake Club</h4>
+                    <p style="font-size: 0.85rem; color: rgba(250, 245, 239, 0.7); margin-bottom: 14px;">
+                        Subscribe for fresh morning bake updates, weekend specials & secret discounts.
+                    </p>
+                    <div class="newsletter-box">
+                        <form onsubmit="event.preventDefault(); showToast('Subscribed to VIP Bake Club!', 'success');" class="newsletter-form-row">
+                            <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                            <button type="submit" class="btn btn-primary btn-sm">Join</button>
+                        </form>
+                    </div>
                 </div>
             </div>
 
-            <div class="footer-bottom">
-                <p>&copy; 2026 Shukla Bakery. All rights reserved.</p>
+            <div class="footer-bottom-bar">
+                <p>&copy; 2026 Shukla Bakery Shop. Fresh Baked, Pure Happiness.</p>
                 <p>Designed with ❤️ for Phase 1 Full-Stack Readiness.</p>
             </div>
         </div>
     </footer>
 
-    <!-- 9. ADMIN / ADD NEW ITEM MODAL -->
+    <!-- ADMIN ADD ITEM MODAL -->
     <div class="modal-overlay" id="adminModal">
         <div class="modal-container">
             <div class="modal-header">
-                <h3 class="modal-title" data-i18n="modal_title">➕ Add New Bakery Item</h3>
+                <h3 class="modal-title">➕ Add New Bakery Item</h3>
                 <button class="modal-close" id="closeAdminModalBtn" aria-label="Close modal">&times;</button>
             </div>
             <div class="modal-body">
                 <form id="addItemForm" novalidate>
                     <div class="form-group">
-                        <label for="itemName" class="form-label" data-i18n="label_item_name">Item Name *</label>
-                        <input type="text" id="itemName" class="form-control" data-i18n-placeholder="placeholder_item_name" placeholder="e.g. Vanilla Bean Tart">
+                        <label for="itemName" class="form-label">Item Name *</label>
+                        <input type="text" id="itemName" class="form-control" placeholder="e.g. Vanilla Bean Tart">
                         <div class="form-error" id="itemNameError"></div>
                     </div>
 
                     <div class="form-group">
-                        <label for="itemCategory" class="form-label" data-i18n="label_category">Category *</label>
+                        <label for="itemCategory" class="form-label">Category *</label>
                         <select id="itemCategory" class="form-control">
-                            <option value="" data-i18n="select_category">-- Select Category --</option>
-                            <option value="Cakes" data-i18n="cat_cakes">Cakes</option>
-                            <option value="Pastries" data-i18n="cat_pastries">Pastries</option>
-                            <option value="Breads" data-i18n="cat_breads">Breads</option>
-                            <option value="Cookies" data-i18n="cat_cookies">Cookies</option>
+                            <option value="">-- Select Category --</option>
+                            <option value="Cakes">Cakes</option>
+                            <option value="Pastries">Pastries</option>
+                            <option value="Breads">Breads</option>
+                            <option value="Cookies">Cookies</option>
+                            <option value="Cupcakes">Cupcakes</option>
                         </select>
                         <div class="form-error" id="itemCategoryError"></div>
                     </div>
 
                     <div class="form-group">
-                        <label for="itemPrice" class="form-label" data-i18n="label_price">Price ($) *</label>
-                        <input type="number" id="itemPrice" class="form-control" step="0.01" min="0.01" placeholder="e.g. 5.50">
+                        <label for="itemPrice" class="form-label">Price in ₹ *</label>
+                        <input type="number" id="itemPrice" class="form-control" step="1" min="1" placeholder="e.g. 250">
                         <div class="form-error" id="itemPriceError"></div>
                     </div>
 
                     <div class="form-group">
-                        <label for="itemDescription" class="form-label" data-i18n="label_desc">Description *</label>
-                        <textarea id="itemDescription" class="form-control" data-i18n-placeholder="placeholder_desc" placeholder="Short description of ingredients, flavor notes, and texture..."></textarea>
-                        <div class="form-error" id="itemDescError"></div>
+                        <label for="itemDiscountPrice" class="form-label">Discount Price in ₹ (Optional)</label>
+                        <input type="number" id="itemDiscountPrice" class="form-control" step="1" min="1" placeholder="e.g. 200 (Must be less than regular price)">
+                        <div class="form-error" id="itemDiscountError"></div>
                     </div>
 
                     <div class="form-group">
-                        <label for="itemImage" class="form-label" data-i18n="label_img">Image URL (Optional)</label>
+                        <label for="itemDescription" class="form-label">Short Description (Optional)</label>
+                        <textarea id="itemDescription" class="form-control" rows="2" placeholder="Ingredients, flavor notes, texture..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemImage" class="form-label">Image URL (Optional)</label>
                         <input type="url" id="itemImage" class="form-control" placeholder="https://images.unsplash.com/...">
                     </div>
 
-                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;" data-i18n="btn_save_item">Save to Menu</button>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <button type="submit" class="btn btn-primary" style="flex: 1;">Save to Menu</button>
+                        <button type="button" class="btn btn-outline" style="flex: 1;" onclick="document.getElementById('adminModal').classList.remove('active');">Cancel</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- 10. SHOPPING CART DRAWER -->
+    <!-- SHOPPING CART DRAWER -->
     <div class="cart-drawer-overlay" id="cartDrawerOverlay"></div>
     <div class="cart-drawer" id="cartDrawer">
         <div class="cart-drawer-header">
             <h3 class="cart-drawer-title">
-                <span data-i18n="cart_title">🛒 Your Cart</span>
+                <span>🛒 Your Cart</span>
                 <span id="cartDrawerCount" style="font-size: 0.9rem; color: var(--text-muted); font-weight: normal;">(0 items)</span>
             </h3>
             <button class="modal-close" id="closeCartDrawerBtn" aria-label="Close cart">&times;</button>
         </div>
 
         <div class="cart-drawer-body" id="cartDrawerItems">
-            <!-- Dynamically populated cart items -->
+            <!-- Dynamically rendered cart items -->
         </div>
 
         <div class="cart-drawer-footer">
             <div class="cart-summary-row">
-                <span data-i18n="cart_total_label">Total Amount:</span>
-                <span class="cart-summary-total" id="cartSubtotal">$0.00</span>
+                <span>Total Amount:</span>
+                <span id="cartSubtotal" style="color: var(--primary-brown);">₹0</span>
             </div>
-            <button class="btn btn-primary" style="width: 100%;" onclick="alert('Thank you for placing your demo order!'); clearCart(); closeCartDrawer();" data-i18n="btn_checkout">
-                Proceed to Checkout
-            </button>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-outline btn-sm" onclick="clearCart()">Clear Cart</button>
+                <button class="btn btn-primary" style="flex: 1;" onclick="alert('Thank you! Your order has been placed successfully.'); clearCart(); closeCartDrawer();">
+                    Proceed to Checkout
+                </button>
+            </div>
         </div>
     </div>
 
     <!-- JS MODULE SCRIPTS -->
-    <script src="js/i18n.js"></script>
-    <script src="js/items.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/script.js"></script>
+    <script src="items.js"></script>
+    <script src="cart.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
