@@ -186,7 +186,7 @@
         <div class="container">
             <div class="text-center animate-fade">
                 <span class="section-tag">Visit Our Shop</span>
-                <h2 class="section-title">Store Location & Hours</h2>
+                <h2 class="section-title">Store Location & Directions</h2>
                 <p class="section-subtitle">Drop by our cozy boutique bakery for hot morning bakes and artisan coffees.</p>
             </div>
 
@@ -196,7 +196,10 @@
                         <div class="info-icon">📍</div>
                         <div class="info-details">
                             <h4>Our Address</h4>
-                            <p>In front of Kukku Market<br>Maharajpur, Kanpur Nagar 209402</p>
+                            <p>Shukla Bakery Shop<br>8FF9+5HP, Maharajpur, Uttar Pradesh 209402</p>
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=8FF9%2B5HP%2C+Maharajpur%2C+Uttar+Pradesh+209402" target="_blank" rel="noopener" class="btn btn-primary btn-sm" style="margin-top: 10px; display: inline-flex;">
+                                📍 Get Directions from Current Location
+                            </a>
                         </div>
                     </div>
 
@@ -212,14 +215,17 @@
                         <div class="info-icon">📞</div>
                         <div class="info-details">
                             <h4>Contact & Hotline</h4>
-                            <p>+91 9026455089<br>hello@shuklabakery.com</p>
+                            <p>+91 9026455089<br><a href="mailto:96sumitshukla@gmail.com" style="color: var(--primary-brown); font-weight: 600;">96sumitshukla@gmail.com</a></p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Interactive Google Map Frame -->
-                <div class="map-frame-wrapper animate-fade">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.9877478635817!2d77.21672131508248!3d28.630138982417706!2m3!1f0!1f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd37b8a07779%3A0x6796245f7823f66e!2sConnaught%20Place%2C%20New%20Delhi!5e0!3m2!1sen!2sin!4v1629888888888!5m2!1sen!2sin" title="Shukla Bakery Shop Google Map" allowfullscreen="" loading="lazy"></iframe>
+                <!-- Interactive Google Map Frame with Plus Code (8FF9+5HP, Maharajpur) -->
+                <div class="map-frame-wrapper animate-fade" style="position: relative;">
+                    <iframe src="https://maps.google.com/maps?q=8FF9%2B5HP%2C%20Maharajpur%2C%20Uttar%20Pradesh%20209402&z=16&output=embed" title="Shukla Bakery Shop Google Map" allowfullscreen="" loading="lazy"></iframe>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=8FF9%2B5HP%2C+Maharajpur%2C+Uttar+Pradesh+209402" target="_blank" rel="noopener" style="position: absolute; bottom: 12px; right: 12px; background: var(--crazy-gradient); color: #FFFFFF; padding: 8px 16px; border-radius: var(--radius-full); font-weight: 700; font-size: 0.8rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 10; display: flex; align-items: center; gap: 6px;">
+                        🧭 Open Directions in Google Maps
+                    </a>
                 </div>
             </div>
         </div>
@@ -299,21 +305,22 @@
         </div>
     </section>
 
-    <!-- 8. CONTACT SECTION -->
+    <!-- 8. CONTACT SECTION (CONFIGURED WITH 96sumitshukla@gmail.com) -->
     <section id="contact" class="section contact">
         <div class="container">
             <div class="contact-grid">
                 <div class="contact-card animate-fade">
                     <h3>Visit Shukla Bakery Shop</h3>
                     <p>We’d love to welcome you to our cozy bakery shop for hot coffee and fresh bakes.</p>
-                    <p><strong>📍 Address:</strong> In front of Kukku Market, Maharajpur, Kanpur Nagar 209402</p>
+                    <p><strong>📍 Address:</strong> 8FF9+5HP, Maharajpur, Uttar Pradesh 209402</p>
                     <p><strong>⏰ Hours:</strong> Mon - Sun: 7:00 AM - 9:00 PM</p>
                     <p><strong>📞 Phone:</strong> +91 9026455089</p>
+                    <p><strong>✉️ Email:</strong> <a href="mailto:96sumitshukla@gmail.com" style="color: var(--accent-gold-glow); font-weight: 600;">96sumitshukla@gmail.com</a></p>
                 </div>
 
                 <div class="contact-form animate-fade">
                     <h3>Send Us a Note</h3>
-                    <form onsubmit="event.preventDefault(); showToast('Thank you for reaching out to Shukla Bakery Shop!', 'success');">
+                    <form onsubmit="handleContactFormSubmit(event)">
                         <div class="form-group">
                             <label class="form-label">Your Name</label>
                             <input type="text" class="form-control" placeholder="e.g. Rahul Sharma" required>
@@ -347,10 +354,10 @@
                         Handcrafting memories, traditional slow-fermented sourdoughs, French butter pastries, and decadent treats daily since 2011.
                     </p>
                     <div class="social-links-row">
+                        <a href="mailto:96sumitshukla@gmail.com" class="social-icon-btn" aria-label="Email" title="Email Us">✉️</a>
                         <a href="#" class="social-icon-btn" aria-label="Instagram">📷</a>
                         <a href="#" class="social-icon-btn" aria-label="Facebook">📘</a>
                         <a href="#" class="social-icon-btn" aria-label="WhatsApp">💬</a>
-                        <a href="#" class="social-icon-btn" aria-label="Twitter">🐤</a>
                     </div>
                 </div>
 
@@ -379,14 +386,14 @@
                     </ul>
                 </div>
 
-                <!-- Newsletter Column -->
+                <!-- Newsletter Column (ROUTED TO 96sumitshukla@gmail.com) -->
                 <div>
                     <h4 class="footer-col-title">Join VIP Bake Club</h4>
                     <p style="font-size: 0.85rem; color: rgba(250, 245, 239, 0.7); margin-bottom: 14px;">
                         Subscribe for fresh morning bake updates, weekend specials & secret discounts.
                     </p>
                     <div class="newsletter-box">
-                        <form onsubmit="event.preventDefault(); showToast('Subscribed to VIP Bake Club!', 'success');" class="newsletter-form-row">
+                        <form onsubmit="handleNewsletterSubmit(event)" class="newsletter-form-row">
                             <input type="email" class="newsletter-input" placeholder="Your email address" required>
                             <button type="submit" class="btn btn-primary btn-sm">Join</button>
                         </form>
@@ -396,7 +403,7 @@
 
             <div class="footer-bottom-bar">
                 <p>&copy; 2026 Shukla Bakery Shop. Fresh Baked, Pure Happiness.</p>
-                <p>Designed with ❤️ for Phase 1 Full-Stack Readiness.</p>
+                <p>Contact: <a href="mailto:96sumitshukla@gmail.com" style="color: var(--accent-gold-glow);">96sumitshukla@gmail.com</a></p>
             </div>
         </div>
     </footer>

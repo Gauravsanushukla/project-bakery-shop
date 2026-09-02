@@ -396,6 +396,53 @@ function initScrollAnimations() {
 }
 
 /**
+ * Handle Contact Form submission to 96sumitshukla@gmail.com
+ */
+function handleContactFormSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const nameInput = form.querySelector('input[type="text"]');
+    const emailInput = form.querySelector('input[type="email"]');
+    const messageInput = form.querySelector('textarea');
+
+    const name = nameInput ? nameInput.value.trim() : 'Customer';
+    const email = emailInput ? emailInput.value.trim() : '';
+    const message = messageInput ? messageInput.value.trim() : '';
+
+    const subject = encodeURIComponent(`New Inquiry from ${name} via Shukla Bakery Website`);
+    const body = encodeURIComponent(`Sender Name: ${name}\nSender Email: ${email}\n\nMessage:\n${message}`);
+
+    showToast(`Thank you ${name}! Opening mail to 96sumitshukla@gmail.com...`, 'success');
+
+    setTimeout(() => {
+        window.location.href = `mailto:96sumitshukla@gmail.com?subject=${subject}&body=${body}`;
+        form.reset();
+    }, 800);
+}
+
+/**
+ * Handle VIP Bake Club Newsletter Join to 96sumitshukla@gmail.com
+ */
+function handleNewsletterSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const emailInput = form.querySelector('.newsletter-input');
+    const userEmail = emailInput ? emailInput.value.trim() : '';
+
+    if (!userEmail) return;
+
+    const subject = encodeURIComponent(`New VIP Bake Club Member Joined!`);
+    const body = encodeURIComponent(`Hello Shukla Bakery!\n\nA new customer joined the VIP Bake Club:\nMember Email: ${userEmail}`);
+
+    showToast(`Welcome to VIP Bake Club! Notifying 96sumitshukla@gmail.com...`, 'success');
+
+    setTimeout(() => {
+        window.location.href = `mailto:96sumitshukla@gmail.com?subject=${subject}&body=${body}`;
+        if (emailInput) emailInput.value = '';
+    }, 800);
+}
+
+/**
  * Toast Notification Utility
  */
 function showToast(message, type = 'info') {
